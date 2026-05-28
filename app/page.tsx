@@ -1,7 +1,7 @@
 'use client'
 
 import { Header } from '@/components/header'
-import { Hero } from '@/components/hero'
+import { Hero3D } from '@/components/hero-3d'
 import { About } from '@/components/about'
 import { Experience } from '@/components/experience'
 import { Projects } from '@/components/projects'
@@ -14,8 +14,7 @@ export default function Home() {
   return (
     <main className="dark bg-background text-foreground">
       <Header />
-      <div className="pt-16"></div>
-      <Hero />
+      <Hero3D />
       <About />
       <Experience />
       <Projects />

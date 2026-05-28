@@ -1,5 +1,7 @@
 'use client'
 
+import { FloatingShapes } from './floating-shapes'
+
 export function Projects() {
   const projects = [
     {
@@ -53,38 +55,10 @@ export function Projects() {
   ]
 
   return (
-    <section id="projects" className="border-t border-border relative py-24 md:py-32 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-accent rounded-full mix-blend-screen filter blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
-      {/* Code background */}
-      <div className="absolute inset-0 opacity-2 pointer-events-none">
-        <pre className="w-full h-full text-xs font-mono text-accent">
-{`// Featured Projects
-const projects = [
-  {
-    name: "EcommHub",
-    type: "Full Stack",
-    users: "50K+",
-    impact: "High"
-  },
-  {
-    name: "RealTime Analytics",
-    type: "Full Stack",
-    users: "10K+ concurrent",
-    impact: "Critical"
-  },
-  {
-    name: "CloudDeploy Manager",
-    type: "DevOps",
-    users: "1000+ apps",
-    impact: "Enterprise"
-  }
-];`}
-        </pre>
+    <section className="border-t border-border relative py-24 md:py-32 overflow-hidden">
+      {/* 3D Background */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <FloatingShapes />
       </div>
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
