@@ -57,7 +57,7 @@ export function Projects() {
   return (
     <section className="border-t border-border relative py-24 md:py-32 overflow-hidden">
       {/* 3D Background */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
         <FloatingShapes />
       </div>
 

@@ -21,7 +21,7 @@ function FloatingOrb({ position }: { position: [number, number, number] }) {
       <meshPhongMaterial
         color="#00d9ff"
         emissive="#00d9ff"
-        emissiveIntensity={0.5}
+        emissiveIntensity={0.8}
         wireframe={true}
       />
     </mesh>
@@ -45,7 +45,8 @@ function AnimatedSphere() {
       <meshPhongMaterial
         color="#1a3a52"
         emissive="#00d9ff"
-        emissiveIntensity={0.2}
+        emissiveIntensity={0.6}
+        shininess={100}
       />
     </mesh>
   )
@@ -129,8 +130,8 @@ export function Hero3D() {
       {/* 3D Canvas Background */}
       <Canvas
         className="absolute inset-0"
-        camera={{ position: [0, 0, 8], fov: 50 }}
-        dpr={[1, 1.5]}
+        camera={{ position: [5, 2, 8], fov: 45 }}
+        dpr={[1, 2]}
         performance={{ min: 0.5 }}
       >
         <Suspense fallback={null}>
@@ -178,8 +179,8 @@ export function Hero3D() {
         </div>
       </div>
 
-      {/* Gradient overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background z-0"></div>
+      {/* Gradient overlay for better text readability - much lighter to show 3D */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/5 to-background/20 z-0"></div>
     </div>
   )
 }
