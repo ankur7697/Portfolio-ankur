@@ -15,8 +15,11 @@ export function Header() {
           <a href="#experience" className="text-sm font-mono text-muted-foreground hover:text-accent transition-colors">
             experience
           </a>
-          <a href="#skills" className="text-sm font-mono text-muted-foreground hover:text-accent transition-colors">
-            skills
+          <a href="#projects" className="text-sm font-mono text-muted-foreground hover:text-accent transition-colors">
+            projects
+          </a>
+          <a href="#stack" className="text-sm font-mono text-muted-foreground hover:text-accent transition-colors">
+            stack
           </a>
           <a
             href="#contact"

@@ -31,10 +31,10 @@ app.get("/contact", (req, res) => {
           {/* Main contact section */}
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-4">
-              <span className="text-accent text-sm font-mono">// Get In Touch</span>
-              <h2 className="text-4xl font-bold">Let&apos;s Work Together</h2>
+              <span className="text-accent text-sm font-mono">// Connect & Collaborate</span>
+              <h2 className="text-4xl font-bold">Let&apos;s Build Together</h2>
               <p className="text-muted-foreground max-w-sm">
-                I&apos;m always open to new opportunities and interesting projects. Let&apos;s build something amazing.
+                Whether you need a full-stack application, scaling solutions, or technical consulting—I&apos;m ready to help bring your vision to life.
               </p>
             </div>
 
