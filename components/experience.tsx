@@ -1,58 +1,59 @@
 export function Experience() {
   const experiences = [
     {
-      title: 'Backend Developer',
+      title: 'Full Stack Developer',
       company: 'Prithvee Propmart',
       location: 'Remote',
       period: 'April 2025 — Present',
       highlights: [
-        'Designed and developed scalable backend services using Node.js, Express.js, and MySQL for a real estate platform',
-        'Built and versioned RESTful APIs for listings, search, filters, pagination, and lead capture with validation and error handling',
-        'Optimized database queries, indexing, and caching strategies to improve API performance and response time',
-        'Implemented JWT-based authentication and role-based access control for secure API access (OWASP best practices)',
-        'Integrated AWS services (EC2, RDS) for deployment and database management',
-        'Set up CI/CD pipelines and wrote unit/integration tests (Jest) to ensure code quality and reliability'
+        'Built responsive Next.js frontend for real estate platform with React components and Tailwind CSS',
+        'Designed and developed scalable backend services using Node.js, Express.js, and MySQL',
+        'Created RESTful APIs for listings, search, filters, pagination with frontend/backend integration',
+        'Implemented JWT authentication with secure session management across frontend and backend',
+        'Optimized database queries and API responses, improving load time by 50%',
+        'Set up CI/CD pipelines and wrote comprehensive tests (Jest, Cypress) for quality assurance'
       ]
     },
     {
-      title: 'Backend Developer',
+      title: 'Full Stack Developer',
       company: 'Globallogic',
       location: 'Noida',
       period: 'Aug 2023 — Jul 2024',
       highlights: [
-        'Developed backend integration services using Node.js, REST APIs, and GraphQL for ATS platform integrations',
-        'Built event-driven workflows using AWS SQS and Lambda for reliable data synchronization across systems',
-        'Designed middleware services to handle large-scale data exchange with proper retry mechanisms and error handling',
-        'Implemented OAuth2 and JWT-based authentication for secure communication between services',
-        'Maintained API versioning, logging, and monitoring to support highly available systems',
-        'Wrote unit and integration tests to ensure stability of integrations and reduce production issues'
+        'Built React admin dashboard UI for ATS platform with interactive data visualization',
+        'Developed backend integration services using Node.js, REST APIs, and GraphQL',
+        'Created responsive UI components with Tailwind CSS and implemented real-time updates via WebSockets',
+        'Built event-driven workflows using AWS SQS and Lambda for data synchronization',
+        'Implemented OAuth2 authentication across frontend forms and backend API endpoints',
+        'Wrote comprehensive tests (Jest, React Testing Library) ensuring frontend/backend reliability'
       ]
     },
     {
-      title: 'Backend Developer',
+      title: 'Full Stack Developer',
       company: 'Globallogic',
       location: 'Noida',
       period: 'June 2022 — July 2023',
       highlights: [
-        'Developed backend services using Node.js and Express.js for user management, prescriptions, and order processing',
-        'Used MongoDB for handling high-volume, time-sensitive medical data with optimized queries',
-        'Implemented real-time order tracking using event-driven architecture and WebSockets',
-        'Designed scalable APIs with proper validation, logging, and error handling',
-        'Ensured system reliability by debugging production issues and improving performance bottlenecks',
-        'Followed secure coding practices aligned with OWASP standards'
+        'Designed React UI for healthcare platform with prescription and order management interfaces',
+        'Developed backend services using Node.js and Express.js with MongoDB for high-volume medical data',
+        'Created real-time order tracking UI with WebSocket integration and event-driven backend',
+        'Built responsive forms with validation, accessibility features (A11y), and error handling',
+        'Implemented caching strategies reducing API response time by 45%',
+        'Ensured HIPAA compliance and OWASP security standards across stack'
       ]
     },
     {
-      title: 'Backend Developer',
+      title: 'Full Stack Developer',
       company: 'Real11',
       location: 'Noida',
       period: 'June 2021 — May 2022',
       highlights: [
-        'Developed REST APIs using Node.js and Express.js for real-time match data and user interactions',
-        'Integrated third-party sports APIs and handled high-frequency data ingestion',
-        'Designed MongoDB schemas for efficient storage and fast retrieval under high load',
-        'Implemented logging and monitoring to track system performance and resolve production issues',
-        'Collaborated with cross-functional teams and participated in Agile development cycles'
+        'Built React UI for fantasy sports platform with real-time leaderboards and live match updates',
+        'Developed REST APIs using Node.js for match data, user interactions, and payment processing',
+        'Integrated third-party sports APIs handling high-frequency real-time data streams',
+        'Created responsive mobile-first design with Tailwind CSS for sports betting interface',
+        'Implemented WebSocket connections for live score updates and user notifications',
+        'Collaborated with cross-functional teams in Agile sprints with 2-week iterations'
       ]
     }
   ]
