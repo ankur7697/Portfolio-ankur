@@ -18,6 +18,9 @@ export function Header() {
           <a href="#projects" className="text-sm font-mono text-muted-foreground hover:text-accent transition-colors">
             projects
           </a>
+          <a href="#frontend-showcase" className="text-sm font-mono text-muted-foreground hover:text-accent transition-colors">
+            ui/ux
+          </a>
           <a href="#stack" className="text-sm font-mono text-muted-foreground hover:text-accent transition-colors">
             stack
           </a>

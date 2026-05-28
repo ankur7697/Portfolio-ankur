@@ -5,6 +5,7 @@ import { Hero3D } from '@/components/hero-3d'
 import { About } from '@/components/about'
 import { Experience } from '@/components/experience'
 import { Projects } from '@/components/projects'
+import { FrontendShowcase } from '@/components/frontend-showcase'
 import { Stack } from '@/components/stack'
 import { Skills } from '@/components/skills'
 import { CTA } from '@/components/cta'
@@ -18,6 +19,7 @@ export default function Home() {
       <About />
       <Experience />
       <Projects />
+      <FrontendShowcase />
       <Stack />
       <Skills />
       <CTA />
