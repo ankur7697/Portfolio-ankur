@@ -4,24 +4,19 @@ export function About() {
       {/* Code background */}
       <div className="absolute inset-0 opacity-3 pointer-events-none">
         <pre className="w-full h-full text-xs font-mono text-accent overflow-hidden whitespace-pre-wrap break-words">
-{`// Backend Developer - 3+ Years Experience
-class Developer {
-  const skills = ["Node.js", "Express", "AWS"];
-  const databases = ["MongoDB", "PostgreSQL"];
-  const focus = "Scalability & Performance";
+{`// Full Stack Developer - 3+ Years
+const developer = {
+  frontend: ["React", "Next.js", "TypeScript"],
+  backend: ["Node.js", "Express", "GraphQL"],
+  databases: ["PostgreSQL", "MongoDB"],
+  cloud: ["AWS", "Docker", "Kubernetes"],
   
-  buildAPIs() {
-    return 100+ production APIs;
-  }
+  buildComplete() {
+    return UI + API + Database + Infrastructure;
+  },
   
-  designSystems() {
-    return microservices, caching, optimization;
-  }
-  
-  optimizePerformance() {
-    return system_design + db_optimization;
-  }
-}`}
+  expertise: "End-to-End Solutions"
+};`}
         </pre>
       </div>
 
@@ -36,23 +31,15 @@ class Developer {
             {/* Main content */}
             <div className="space-y-6">
               <p className="text-base text-muted-foreground leading-relaxed">
-                I&apos;m a backend developer with 3+ years of experience building scalable server-side 
-                solutions for diverse platforms. My expertise spans Node.js, Express.js, REST APIs, 
-                and cloud infrastructure (AWS). I&apos;ve worked with leading tech companies across 
-                real estate, healthcare, fintech, and sports tech sectors.
+                I&apos;m a full-stack developer with 3+ years of experience building complete applications from database design to polished user interfaces. My expertise spans React, Next.js, Node.js, PostgreSQL, and AWS. I&apos;ve worked with leading tech companies across real estate, healthcare, fintech, and sports tech sectors, delivering products used by 50K+ users.
               </p>
 
               <p className="text-base text-muted-foreground leading-relaxed">
-                I specialize in designing efficient database architectures, implementing robust API 
-                solutions, and optimizing system performance. My focus is on writing clean, maintainable 
-                code that scales with your business needs while following industry best practices and 
-                security standards.
+                I excel at bridging frontend and backend, creating seamless user experiences backed by efficient server architecture. I design scalable systems, implement secure APIs, optimize database queries, and craft responsive interfaces that perform at scale. My passion lies in building production-grade applications with clean, maintainable code.
               </p>
 
               <p className="text-base text-muted-foreground leading-relaxed">
-                Beyond coding, I&apos;m passionate about system design, performance optimization, and 
-                mentoring junior developers. I believe in continuous learning and staying updated with 
-                the latest technologies and industry trends.
+                Beyond coding, I&apos;m passionate about system architecture, DevOps practices, performance optimization, and mentoring developers. I believe in writing sustainable code, following best practices, and continuously evolving with emerging technologies to build better products.
               </p>
             </div>
 
@@ -75,13 +62,13 @@ class Developer {
                 <li className="flex items-center gap-2">
                   <span className="text-accent">»</span>
                   <span className="text-muted-foreground">
-                    <span className="text-blue-400">expertise</span>: <span className="text-green-400">&quot;Node.js, APIs, Databases&quot;</span>
+                    <span className="text-blue-400">focus</span>: <span className="text-green-400">&quot;React, Node.js, Databases&quot;</span>
                   </span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-accent">»</span>
                   <span className="text-muted-foreground">
-                    <span className="text-blue-400">passion</span>: <span className="text-green-400">&quot;System Design, Cloud Architecture&quot;</span>
+                    <span className="text-blue-400">passion</span>: <span className="text-green-400">&quot;Full Stack, System Design&quot;</span>
                   </span>
                 </li>
               </ul>

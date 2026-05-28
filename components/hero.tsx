@@ -41,10 +41,10 @@ export function Hero() {
           {/* Main heading */}
           <div className="space-y-6">
             <h1 className="text-6xl md:text-7xl font-bold leading-tight text-balance">
-              <span className="text-accent">Backend</span> Developer
+              <span className="text-accent">Full Stack</span> Developer
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Building scalable APIs, microservices, and cloud infrastructure. Specializing in Node.js, Express, AWS, and database architecture.
+              Crafting end-to-end solutions from responsive UIs to scalable cloud infrastructure. Full-stack expertise across React, Node.js, AWS, and modern databases.
             </p>
           </div>
 
