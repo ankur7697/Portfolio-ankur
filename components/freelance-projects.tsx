@@ -36,6 +36,7 @@ export function FreelanceProjects() {
       category: 'Real Estate',
       description: 'Premium real estate platform with advanced property listings and CRM',
       icon: '🏢',
+      image: '/prithvee-showcase.png',
       color: 'from-blue-500/20 to-cyan-500/20',
       accentColor: 'text-cyan-400',
       borderColor: 'border-cyan-500/30 hover:border-cyan-400/60',
@@ -55,6 +56,7 @@ export function FreelanceProjects() {
       category: 'Travel & Tourism',
       description: 'Modern tour booking platform with seamless user experience',
       icon: '✈️',
+      image: '/travel-showcase.png',
       color: 'from-emerald-500/20 to-teal-500/20',
       accentColor: 'text-emerald-400',
       borderColor: 'border-emerald-500/30 hover:border-emerald-400/60',
@@ -74,15 +76,16 @@ export function FreelanceProjects() {
       category: 'Travel & Tourism',
       description: 'Professional travel agency website with beautiful package showcase',
       icon: '🌍',
+      image: '/travel-showcase.png',
       color: 'from-violet-500/20 to-purple-500/20',
       accentColor: 'text-violet-400',
       borderColor: 'border-violet-500/30 hover:border-violet-400/60',
       highlights: [
         'Interactive tour packages showcase with detailed itineraries',
         'Real-time booking system with instant confirmations',
-        'Email notification system for bookings and updates',
+        'Email notification system for bookings and travel updates',
         'Customer testimonials and reviews section',
-        'SEO optimized for travel keywords'
+        'SEO optimized to improve search visibility for travel keywords'
       ],
       stats: '100+ Reviews'
     }
@@ -138,6 +141,18 @@ export function FreelanceProjects() {
 
                 {/* Content */}
                 <div className="relative z-10 h-full flex flex-col space-y-6">
+                  {/* Image Showcase */}
+                  {project.image && (
+                    <div className="relative w-full h-48 rounded-xl overflow-hidden group/image">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110 brightness-90"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  )}
+
                   {/* Top section */}
                   <div className="space-y-4">
                     {/* Category badge */}
@@ -149,10 +164,10 @@ export function FreelanceProjects() {
 
                     {/* Icon and title */}
                     <div className="space-y-3">
-                      <div className="text-6xl transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 origin-left">
+                      <div className="text-5xl transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 origin-left">
                         {project.icon}
                       </div>
-                      <h3 className={`text-3xl font-bold transition-colors duration-300 ${project.accentColor}`}>
+                      <h3 className={`text-2xl font-bold transition-colors duration-300 ${project.accentColor}`}>
                         {project.title}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">

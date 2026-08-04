@@ -61,14 +61,18 @@ export function Hero3D() {
         <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-purple-600/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      {/* Animated background video/canvas effect */}
+      {/* Animated background with image */}
       <div className="absolute inset-0 overflow-hidden">
-        <canvas
-          className="w-full h-full opacity-40"
+        <div 
+          className="absolute inset-0 opacity-30 animate-pulse"
           style={{
-            background: 'linear-gradient(135deg, rgba(79, 39, 245, 0.1) 0%, rgba(236, 72, 153, 0.1) 50%, rgba(139, 92, 246, 0.1) 100%)',
+            backgroundImage: 'url(/hero-bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            animationDuration: '4s',
           }}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background/80" />
       </div>
 
       {/* Animated code blocks orbiting center */}
