@@ -5,6 +5,7 @@ export function Experience() {
       company: 'Prithvee Propmart',
       location: 'Remote',
       period: 'April 2025 — Present',
+      website: 'prithvee.com',
       highlights: [
         'Built responsive Next.js frontend for real estate platform with React components and Tailwind CSS',
         'Designed and developed scalable backend services using Node.js, Express.js, and MySQL',
