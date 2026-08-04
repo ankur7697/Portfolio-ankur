@@ -59,12 +59,12 @@ export function Header() {
           >
             skills
           </button>
-          <button 
-            onClick={() => scrollToSection('contact')}
+          <a 
+            href="/start-project"
             className="ml-2 px-5 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-medium font-mono hover:shadow-lg hover:shadow-indigo-600/50 transition-all transform hover:scale-105 active:scale-95"
           >
-            contact
-          </button>
+            start project
+          </a>
         </div>
       </nav>
     </header>

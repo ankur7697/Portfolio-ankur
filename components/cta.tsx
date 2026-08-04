@@ -24,8 +24,8 @@ export function CTA() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
             <a
-              href="mailto:ankursharma7986@gmail.com"
-              className="px-8 py-4 bg-accent text-accent-foreground rounded-lg font-medium hover:shadow-lg hover:shadow-accent/50 transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+              href="/start-project"
+              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-indigo-600/50 transition-all transform hover:scale-105 flex items-center justify-center gap-2"
             >
               <span>Start a Project</span>
               <span>→</span>
@@ -34,7 +34,7 @@ export function CTA() {
               href="https://www.linkedin.com/in/ankursharma712/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent/10 transition-all flex items-center justify-center gap-2"
+              className="px-8 py-4 border-2 border-indigo-500 text-indigo-400 rounded-lg font-medium hover:bg-indigo-500/10 transition-all flex items-center justify-center gap-2"
             >
               <span>Connect on LinkedIn</span>
               <span>↗</span>
