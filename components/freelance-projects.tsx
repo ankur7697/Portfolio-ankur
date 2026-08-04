@@ -89,7 +89,7 @@ export function FreelanceProjects() {
   ]
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-40 overflow-hidden">
+    <section ref={sectionRef} id="freelance" className="relative py-24 md:py-40 overflow-hidden">
       {/* Premium gradient background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>

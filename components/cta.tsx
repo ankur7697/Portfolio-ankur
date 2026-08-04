@@ -2,7 +2,7 @@
 
 export function CTA() {
   return (
-    <section className="border-t border-border relative py-24 md:py-32 overflow-hidden">
+    <section id="contact" className="border-t border-border relative py-24 md:py-32 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-blue-500/20"></div>

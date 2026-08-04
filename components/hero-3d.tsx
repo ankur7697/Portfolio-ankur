@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export function Hero3D() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const codeBlocks = useRef<HTMLDivElement[]>([])
 
   const codeSnippets = [
@@ -14,20 +13,6 @@ export function Hero3D() {
     { text: 'const UI = <Component />', delay: 0.6 },
     { text: 'export { Module, Default }', delay: 0.8 },
   ]
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      setMousePosition({
-        x: (e.clientX - rect.left) / rect.width,
-        y: (e.clientY - rect.top) / rect.height,
-      })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
 
   useEffect(() => {
     codeBlocks.current.forEach((block, index) => {
@@ -56,28 +41,46 @@ export function Hero3D() {
     return () => clearInterval(animation)
   }, [])
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden"
+      id="hero"
+      className="relative w-full min-h-screen pt-24 pb-12 flex items-center justify-center overflow-hidden"
     >
       {/* Animated gradient background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full mix-blend-screen filter blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -top-40 left-1/4 w-96 h-96 bg-indigo-600/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 -right-20 w-96 h-96 bg-pink-600/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-purple-600/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      {/* Animated background video/canvas effect */}
+      <div className="absolute inset-0 overflow-hidden">
+        <canvas
+          className="w-full h-full opacity-40"
+          style={{
+            background: 'linear-gradient(135deg, rgba(79, 39, 245, 0.1) 0%, rgba(236, 72, 153, 0.1) 50%, rgba(139, 92, 246, 0.1) 100%)',
+          }}
+        />
       </div>
 
       {/* Animated code blocks orbiting center */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative w-96 h-96">
+        <div className="relative w-80 h-80">
           {codeSnippets.map((snippet, index) => (
             <div
               key={index}
               ref={(el) => {
                 if (el) codeBlocks.current[index] = el
               }}
-              className="absolute px-4 py-2 bg-accent/10 border border-accent/30 rounded-lg backdrop-blur-sm text-xs font-mono text-accent whitespace-nowrap transition-all duration-300 transform hover:bg-accent/20 hover:border-accent/60 hover:scale-110"
+              className="absolute px-4 py-2 bg-indigo-500/15 border border-indigo-400/40 rounded-lg backdrop-blur-md text-xs font-mono text-indigo-300 whitespace-nowrap transition-all duration-300 transform hover:bg-indigo-500/30 hover:border-indigo-400/80 hover:scale-110 shadow-lg shadow-indigo-500/20"
               style={{
                 animation: `float ${3 + index * 0.5}s ease-in-out infinite`,
                 animationDelay: `${snippet.delay}s`,
@@ -107,53 +110,69 @@ export function Hero3D() {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 text-center space-y-8 px-6 max-w-3xl">
+      <div className="relative z-10 text-center space-y-8 px-6 max-w-4xl">
         <div className="inline-block">
-          <span className="text-accent text-sm font-mono tracking-wider px-4 py-2 rounded-full bg-accent/10 border border-accent/30">
-            $ ankur7697 --full-stack
+          <span className="text-indigo-400 text-sm font-mono tracking-wider px-4 py-2 rounded-full bg-indigo-500/15 border border-indigo-400/40 backdrop-blur-md">
+            $ ankur7697 --full-stack developer
           </span>
         </div>
 
-        <h1 className="text-6xl md:text-8xl font-bold leading-tight text-balance">
-          <span className="bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-            Creative Developer
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight text-balance">
+          <span className="bg-gradient-to-r from-indigo-300 via-pink-300 to-purple-300 bg-clip-text text-transparent block">
+            Creative
+          </span>
+          <span className="bg-gradient-to-r from-purple-300 via-indigo-300 to-pink-300 bg-clip-text text-transparent block">
+            Developer
           </span>
         </h1>
 
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Crafting stunning frontends with React & Next.js, powerful backends with Node.js, and seamless integrations. Turning ideas into interactive experiences.
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Building stunning frontends with React & Next.js, scalable backends with Node.js, and crafting seamless integrations. Let's turn your ideas into interactive experiences.
         </p>
 
-        <div className="flex flex-col md:flex-row justify-center gap-4 pt-8">
-          <button className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-indigo-600/50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
+          <button 
+            onClick={() => scrollToSection('freelance')}
+            className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-2xl hover:shadow-indigo-600/40 transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+          >
             <span>View My Work</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
-          <button className="px-8 py-3 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent/10 transition-all duration-300 transform hover:scale-105">
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="px-8 py-3 border-2 border-indigo-500 text-indigo-400 rounded-lg font-medium hover:bg-indigo-500/20 transition-all duration-300 transform hover:scale-105 active:scale-95"
+          >
             Get In Touch
           </button>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-border">
+        <div className="grid grid-cols-3 gap-4 sm:gap-8 mt-16 pt-8 border-t border-border/40">
           <div className="space-y-2 group cursor-pointer">
-            <p className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
+            <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
               3+
             </p>
-            <p className="text-sm text-muted-foreground">Years Experience</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Years</p>
           </div>
           <div className="space-y-2 group cursor-pointer">
-            <p className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
+            <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
               50+
             </p>
-            <p className="text-sm text-muted-foreground">Projects Built</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Projects</p>
           </div>
           <div className="space-y-2 group cursor-pointer">
-            <p className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
+            <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
               15+
             </p>
-            <p className="text-sm text-muted-foreground">Tech Stack</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Tech Stack</p>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="pt-12 animate-bounce">
+          <svg className="w-6 h-6 mx-auto text-indigo-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </div>
 
@@ -183,6 +202,15 @@ export function Hero3D() {
           50% {
             opacity: 0.8;
           }
+        }
+
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+
+        .animate-bounce {
+          animation: bounce 2s infinite;
         }
       `}</style>
     </div>
