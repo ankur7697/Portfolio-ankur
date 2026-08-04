@@ -1,186 +1,222 @@
 'use client'
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Suspense, useRef, useMemo } from 'react'
-import * as THREE from 'three'
-
-function FloatingOrb({ position }: { position: [number, number, number] }) {
-  const mesh = useRef<THREE.Mesh>(null)
-
-  useFrame(({ clock }) => {
-    if (mesh.current) {
-      mesh.current.position.y += Math.sin(clock.getElapsedTime() * 0.5) * 0.002
-      mesh.current.rotation.x += 0.001
-      mesh.current.rotation.y += 0.002
-    }
-  })
-
-  return (
-    <mesh ref={mesh} position={position}>
-      <icosahedronGeometry args={[0.5, 4]} />
-      <meshPhongMaterial
-        color="#00d9ff"
-        emissive="#00d9ff"
-        emissiveIntensity={0.8}
-        wireframe={true}
-      />
-    </mesh>
-  )
-}
-
-function AnimatedSphere() {
-  const mesh = useRef<THREE.Mesh>(null)
-
-  useFrame(({ clock }) => {
-    if (mesh.current) {
-      mesh.current.rotation.x = clock.getElapsedTime() * 0.1
-      mesh.current.rotation.y = clock.getElapsedTime() * 0.15
-      mesh.current.position.z = Math.sin(clock.getElapsedTime() * 0.5) * 1
-    }
-  })
-
-  return (
-    <mesh ref={mesh} position={[0, 0, -5]}>
-      <sphereGeometry args={[2, 64, 64]} />
-      <meshPhongMaterial
-        color="#1a3a52"
-        emissive="#00d9ff"
-        emissiveIntensity={0.6}
-        shininess={100}
-      />
-    </mesh>
-  )
-}
-
-function CloudParticles() {
-  const group = useRef<THREE.Group>(null)
-
-  useFrame(({ clock }) => {
-    if (group.current) {
-      group.current.children.forEach((child: any, index: number) => {
-        child.position.x += Math.sin(clock.getElapsedTime() * 0.3 + index) * 0.01
-        child.position.y += Math.cos(clock.getElapsedTime() * 0.2 + index) * 0.01
-        child.rotation.z += 0.001
-      })
-    }
-  })
-
-  const particles = useMemo(() => {
-    const items = []
-    for (let i = 0; i < 8; i++) {
-      items.push({
-        position: [
-          (Math.random() - 0.5) * 10,
-          (Math.random() - 0.5) * 10,
-          (Math.random() - 0.5) * 10,
-        ] as [number, number, number],
-      })
-    }
-    return items
-  }, [])
-
-  return (
-    <group ref={group}>
-      {particles.map((particle, index) => (
-        <mesh key={index} position={particle.position} scale={Math.random() * 0.5 + 0.3}>
-          <tetrahedronGeometry args={[1, 0]} />
-          <meshPhongMaterial
-            color="#00d9ff"
-            emissive="#00d9ff"
-            emissiveIntensity={0.3}
-            opacity={0.4}
-            transparent={true}
-            wireframe={true}
-          />
-        </mesh>
-      ))}
-    </group>
-  )
-}
-
-function Lights() {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={0.8} color="#00d9ff" />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#3b82f6" />
-      <pointLight position={[0, 0, 5]} intensity={0.6} />
-    </>
-  )
-}
-
-function Scene() {
-  const { camera } = useThree()
-
-  return (
-    <>
-      <Lights />
-      <FloatingOrb position={[-3, 2, -8]} />
-      <FloatingOrb position={[3, -2, -6]} />
-      <FloatingOrb position={[0, 0, -10]} />
-      <AnimatedSphere />
-      <CloudParticles />
-    </>
-  )
-}
+import { useEffect, useRef } from 'react'
 
 export function Hero3D() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const codeBlocks = useRef<HTMLDivElement[]>([])
+
+  const codeSnippets = [
+    { text: 'const buildMagic = () => {}', delay: 0 },
+    { text: 'function* iterator() { yield }', delay: 0.2 },
+    { text: 'async await Promise.all()', delay: 0.4 },
+    { text: 'const UI = <Component />', delay: 0.6 },
+    { text: 'export { Module, Default }', delay: 0.8 },
+  ]
+
+  useEffect(() => {
+    codeBlocks.current.forEach((block, index) => {
+      if (!block) return
+      const angle = (index / codeBlocks.current.length) * Math.PI * 2
+      const radius = 200 + Math.sin(Date.now() * 0.001 + index) * 50
+      const x = Math.cos(angle) * radius
+      const y = Math.sin(angle) * radius
+
+      block.style.setProperty('--x', `${x}px`)
+      block.style.setProperty('--y', `${y}px`)
+    })
+
+    const animation = setInterval(() => {
+      codeBlocks.current.forEach((block, index) => {
+        if (!block) return
+        const angle = (index / codeBlocks.current.length) * Math.PI * 2
+        const radius = 200 + Math.sin(Date.now() * 0.001 + index) * 50
+        const x = Math.cos(angle) * radius
+        const y = Math.sin(angle) * radius
+
+        block.style.transform = `translate(${x}px, ${y}px)`
+      })
+    }, 16)
+
+    return () => clearInterval(animation)
+  }, [])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-      {/* 3D Canvas Background */}
-      <Canvas
-        className="absolute inset-0"
-        camera={{ position: [5, 2, 8], fov: 45 }}
-        dpr={[1, 2]}
-        performance={{ min: 0.5 }}
-      >
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
-      </Canvas>
+    <div
+      ref={containerRef}
+      id="hero"
+      className="relative w-full min-h-screen pt-24 pb-12 flex items-center justify-center overflow-hidden"
+    >
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 left-1/4 w-96 h-96 bg-indigo-600/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 -right-20 w-96 h-96 bg-pink-600/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-purple-600/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      {/* Animated background with image */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-30 animate-pulse"
+          style={{
+            backgroundImage: 'url(/hero-bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            animationDuration: '4s',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background/80" />
+      </div>
+
+      {/* Animated code blocks orbiting center */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="relative w-80 h-80">
+          {codeSnippets.map((snippet, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                if (el) codeBlocks.current[index] = el
+              }}
+              className="absolute px-4 py-2 bg-indigo-500/15 border border-indigo-400/40 rounded-lg backdrop-blur-md text-xs font-mono text-indigo-300 whitespace-nowrap transition-all duration-300 transform hover:bg-indigo-500/30 hover:border-indigo-400/80 hover:scale-110 shadow-lg shadow-indigo-500/20"
+              style={{
+                animation: `float ${3 + index * 0.5}s ease-in-out infinite`,
+                animationDelay: `${snippet.delay}s`,
+              }}
+            >
+              {snippet.text}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Central glow effect */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-96 h-96 bg-gradient-to-r from-indigo-600/20 via-pink-600/20 to-purple-600/20 rounded-full filter blur-3xl"></div>
+      </div>
+
+      {/* Grid effect */}
+      <div className="absolute inset-0 pointer-events-none opacity-5">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 text-center space-y-6 px-6 max-w-2xl">
+      <div className="relative z-10 text-center space-y-8 px-6 max-w-4xl">
         <div className="inline-block">
-          <span className="text-accent text-sm font-mono tracking-wider">$ full-stack engineer</span>
+          <span className="text-indigo-400 text-sm font-mono tracking-wider px-4 py-2 rounded-full bg-indigo-500/15 border border-indigo-400/40 backdrop-blur-md">
+            $ ankur7697 --full-stack developer
+          </span>
         </div>
 
-        <h1 className="text-6xl md:text-7xl font-bold leading-tight text-balance">
-          <span className="text-accent">Build</span> Amazing Products
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight text-balance">
+          <span className="bg-gradient-to-r from-indigo-300 via-pink-300 to-purple-300 bg-clip-text text-transparent block">
+            Creative
+          </span>
+          <span className="bg-gradient-to-r from-purple-300 via-indigo-300 to-pink-300 bg-clip-text text-transparent block">
+            Developer
+          </span>
         </h1>
 
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Full-stack developer crafting beautiful frontends, powerful backends, and scalable cloud infrastructure. Let&apos;s create something extraordinary.
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Building stunning frontends with React & Next.js, scalable backends with Node.js, and crafting seamless integrations. Let's turn your ideas into interactive experiences.
         </p>
 
-        <div className="flex justify-center gap-4 pt-8">
-          <button className="px-8 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105">
-            View My Work
+        <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
+          <button 
+            onClick={() => scrollToSection('freelance')}
+            className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-2xl hover:shadow-indigo-600/40 transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+          >
+            <span>View My Work</span>
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
-          <button className="px-8 py-3 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent/10 transition-colors">
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="px-8 py-3 border-2 border-indigo-500 text-indigo-400 rounded-lg font-medium hover:bg-indigo-500/20 transition-all duration-300 transform hover:scale-105 active:scale-95"
+          >
             Get In Touch
           </button>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-border">
-          <div className="space-y-1">
-            <p className="text-3xl font-bold text-accent font-mono">3+</p>
-            <p className="text-sm text-muted-foreground">Years</p>
+        <div className="grid grid-cols-3 gap-4 sm:gap-8 mt-16 pt-8 border-t border-border/40">
+          <div className="space-y-2 group cursor-pointer">
+            <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
+              3+
+            </p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Years</p>
           </div>
-          <div className="space-y-1">
-            <p className="text-3xl font-bold text-accent font-mono">100+</p>
-            <p className="text-sm text-muted-foreground">APIs</p>
+          <div className="space-y-2 group cursor-pointer">
+            <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
+              50+
+            </p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Projects</p>
           </div>
-          <div className="space-y-1">
-            <p className="text-3xl font-bold text-accent font-mono">10+</p>
-            <p className="text-sm text-muted-foreground">Tech Stack</p>
+          <div className="space-y-2 group cursor-pointer">
+            <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent font-mono group-hover:scale-110 transition-transform">
+              15+
+            </p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Tech Stack</p>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="pt-12 animate-bounce">
+          <svg className="w-6 h-6 mx-auto text-indigo-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </div>
 
-      {/* Gradient overlay for better text readability - much lighter to show 3D */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/5 to-background/20 z-0"></div>
+      {/* Animated styles */}
+      <style>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translate(var(--x, 0), var(--y, 0)) translateY(0px);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: translate(var(--x, 0), var(--y, 0)) translateY(-20px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.5;
+          }
+          50% {
+            opacity: 0.8;
+          }
+        }
+
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+
+        .animate-bounce {
+          animation: bounce 2s infinite;
+        }
+      `}</style>
     </div>
   )
 }

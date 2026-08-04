@@ -5,6 +5,7 @@ export function Experience() {
       company: 'Prithvee Propmart',
       location: 'Remote',
       period: 'April 2025 — Present',
+      website: 'prithvee.com',
       highlights: [
         'Built responsive Next.js frontend for real estate platform with React components and Tailwind CSS',
         'Designed and developed scalable backend services using Node.js, Express.js, and MySQL',
@@ -12,6 +13,37 @@ export function Experience() {
         'Implemented JWT authentication with secure session management across frontend and backend',
         'Optimized database queries and API responses, improving load time by 50%',
         'Set up CI/CD pipelines and wrote comprehensive tests (Jest, Cypress) for quality assurance'
+      ]
+    },
+    {
+      title: 'Freelance Full Stack Developer',
+      company: 'Faith Tour Travel',
+      location: 'Remote',
+      period: 'Recent',
+      website: 'www.faithtourtravel.com',
+      highlights: [
+        'Built responsive Next.js and React frontend for tour booking platform with modern UI/UX',
+        'Designed intuitive booking interface with real-time availability management',
+        'Implemented payment gateway integration for seamless transaction processing',
+        'Created dynamic package listing and filtering system for multiple tour destinations',
+        'Built admin dashboard for managing tours, bookings, and customer inquiries',
+        'Optimized for mobile responsiveness ensuring smooth experience across all devices'
+      ]
+    },
+    {
+      title: 'Freelance Full Stack Developer',
+      company: 'Crystal Tour and Travel',
+      location: 'Remote',
+      period: 'Recent',
+      website: 'crystaltourandtravel.com',
+      highlight: 'Built responsive Next.js and React frontend for tour booking platform with modern UI/UX',
+      highlights: [
+        'Developed modern, responsive website for travel company with Next.js and Tailwind CSS',
+        'Created interactive tour packages showcase with detailed itineraries and pricing',
+        'Built booking system with real-time availability and instant confirmation',
+        'Implemented email notification system for booking confirmations and travel updates',
+        'Designed customer testimonials and reviews section to build trust and engagement',
+        'Integrated SEO optimization to improve search visibility for travel keywords'
       ]
     },
     {
@@ -101,6 +133,17 @@ Total Commits: 3+ Years`}
                     <h3 className="text-xl font-semibold group-hover:text-accent transition-colors">{exp.title}</h3>
                     <span className="text-accent text-sm font-mono">@</span>
                     <span className="text-accent font-mono font-medium">{exp.company}</span>
+                    {exp.website && (
+                      <a
+                        href={`https://${exp.website}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-1 px-2.5 py-1 text-xs font-mono bg-gradient-to-r from-accent/20 to-blue-500/20 border border-accent/50 rounded-full text-accent hover:from-accent/30 hover:to-blue-500/30 hover:border-accent transition-all duration-200 flex items-center gap-1.5 group/link"
+                      >
+                        <span className="text-accent group-hover/link:text-accent transition-colors">🔗</span>
+                        <span>Visit</span>
+                      </a>
+                    )}
                   </div>
                   <div className="flex flex-wrap gap-3 text-xs font-mono text-muted-foreground">
                     <span className="px-3 py-1.5 bg-secondary/30 border border-border/50 rounded group-hover:bg-accent/10 group-hover:border-accent/50 transition-all">{exp.location}</span>
